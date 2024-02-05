@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+
+  <title>Pakistan's Largest E-commerce Data Set</title>
+</head>
+
+<body>
+  <div class="header">
+    <h1 class="animated-heading">Pakistan's Largest E-commerce Data Set</h1>
+  </div>
+
+  <div >
+    <div class="sorting-container">
+      <div class="container">
+        <div class="sortContainer">
+          <label for="sortMethod">Select DataSet :</label>
+          <select id="dataSetAmount">
+            <option value="5000">5000</option>
+            <option value="25000">25000</option>
+            <option value="50000">50000</option>
+            <option value="500000">500000</option>
+          </select>
+        </div>
+        <div class="timeContainer">
+          <p class="timeComplexity" id="timeDuration"> </p>
+        </div>
+      </div>
+
+      <div>
+        <button class="sorting" id="sortWebWorkers">Sort with Web Workers by Price</button>
+        <button class="sorting" id="simpleSort">Simple Sorting by Price</button>
+        <button id="resetPage">Reset</button>
+
+      </div>
+
+    </div>
+    <div class="table-container">
+
+      <table id="data-table">
+        <thead>
+          <tr>
+            <th>Item ID</th>
+            <th>Status</th>
+            <th>Created At</th>
+            <th>Price</th>
+            <th>Qty Ordered</th>
+            <th>Category Name</th>
+            <th>Payment Method</th>
+            <th>Year</th>
+          </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+      </table>
+      <div class="loading-container">
+        <div id="progress-bar" class="loading-line"></div>
+      </div>
+      <div class="pagination">
+        <button id="prevPage">Previous Page</button>
+        <button id="nextPage">Next Page</button>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="./sortFunctions.js"></script>
+  <script type="module" src="./main.js"></script>
+</body>
+
+</html>
