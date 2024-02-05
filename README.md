@@ -8,7 +8,7 @@ This project demonstrates the performance benefits of using Web Workers in sorti
 
     ```bash
     git clone  https://github.com/Abdul-Muneeb-Qureshi/Sorting-using-web-workers.git
-    cd web-workers-sorting
+    cd Sorting-using-web-workers.git
     ```
 
 2. **Open the `index.html` file in your browser to view the application.**
