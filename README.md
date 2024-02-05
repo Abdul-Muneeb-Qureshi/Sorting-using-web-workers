@@ -19,17 +19,30 @@ Using Web Workers for sorting large datasets provides significant performance im
 
 ## Challenges Faced and Solutions
 
-1. **Web Worker Communication Issue:**
-    - **Challenge:** Communicating between the main thread and Web Workers.
-    - **Solution:** Utilized the postMessage API for communication and structured data passing to ensure seamless interaction.
+### 1 Limited Access to the DOM:
+Web Workers do not have direct access to the DOM. This means they cannot manipulate the DOM directly or access UI elements. Communication between the main thread and Web Workers is typically done through message passing.
 
-2. **UI Responsiveness Issue:**
-    - **Challenge:** Preventing the UI from freezing during the sorting process.
-    - **Solution:** Implemented Web Workers to offload sorting tasks, allowing users to perform other operations without experiencing UI blockage.
+**Solution:** Use message passing to communicate between the main thread and Web Workers. Send only necessary data for processing and receive results through message events. If needed, update the DOM in the main thread based on the processed results.
 
-3. **Algorithm Optimization Issue:**
-    - **Challenge:** Ensuring the sorting algorithm is efficient for large datasets.
-    - **Solution:** Selected the selection sort algorithm for simplicity and parallelization in Web Workers, optimizing its performance.
+### 2 Communication Overhead:
+Passing data between the main thread and Web Workers involves serialization and deserialization, which can introduce some overhead. It's important to be mindful of the data being transferred and avoid unnecessary communication.
+
+**Solution:** Minimize data transfer between the main thread and Web Workers. Break down tasks into smaller chunks to reduce the amount of data sent. Consider using data structures like SharedArrayBuffer when applicable to avoid unnecessary serialization.
+
+### 3 Immutable Data:
+To send data between the main thread and Web Workers, the data must be serializable (e.g., using the structured clone algorithm). This can limit the types of data that can be efficiently shared between threads, and mutable objects may require cloning before being sent.
+
+**Solution:** Design your application with immutability in mind. Avoid modifying data directly and instead create new copies with the necessary changes. Use structured cloneable data types to facilitate efficient data transfer between threads.
+
+### 4 Global State:
+Web Workers do not share the same global state as the main thread. If your application relies heavily on shared state, you might need to consider alternative strategies for managing state or use additional tools like SharedArrayBuffer.
+
+**Solution:** Carefully manage shared state by using message passing to synchronize updates. Consider using tools like SharedArrayBuffer or libraries that facilitate shared memory patterns. Keep shared state minimal and well-defined to avoid synchronization issues.
+
+### 5 Debugging Challenges:
+Debugging code within a Web Worker can be more challenging compared to debugging code in the main thread. Tools for debugging Web Workers are available, but they may not be as seamless as debugging regular JavaScript.
+
+**Solution:** Use browser developer tools that support debugging Web Workers. Set breakpoints, inspect variables, and use console messages within Web Workers. Consider logging messages to the main thread to facilitate easier debugging.
 
 ## References and Resources
 
