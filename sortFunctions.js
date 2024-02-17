@@ -6,7 +6,7 @@ export function selectionSort(arr) {
 
         for (var j = i + 1; j < len; j++) {
             // Compare the fourth index (year) of elements
-            if (parseFloat(arr[j][3]) < parseFloat(arr[minIndex][3])) {
+            if (parseInt(arr[j][3]) < parseInt(arr[minIndex][3])) {
                 minIndex = j;
             }
         }
